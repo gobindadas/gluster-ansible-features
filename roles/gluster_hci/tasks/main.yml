@@ -34,3 +34,10 @@
   when: gluster_features_enable_ssl|default(false)
   tags:
     - sslsetup
+
+# Configure vdsmd to use 4k for gluster.
+- name: Enable 4k support for gluster
+  import_tasks: glusterd_4k.yml
+  when: gluster_features_enable_4k | default(false)
+  tags:
+    - setup4k

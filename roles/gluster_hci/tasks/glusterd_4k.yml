@@ -1,0 +1,14 @@
+---
+- name: Enable 4k support for gluster
+  block:
+  - name: Create a drop-in configuration file
+    copy:
+      dest: "/etc/vdsm/vdsm.conf.d/gluster.conf"
+      content: |
+        [gluster]
+        enable_4k_storage = true
+
+  - name: Restart vdsmd
+      service:
+        name: vdsmd
+        state: restarted
